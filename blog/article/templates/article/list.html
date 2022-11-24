@@ -1,0 +1,26 @@
+{% extends 'article/base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+    {% if article %}
+        {% for a in article %}
+            <h2>{{ a.article_text }}</h2>
+            <p>{{ a.article_content }}</p>
+            <em>{{ a.article_date }}</em>
+            <br>
+        {% endfor %}
+    {% else %}
+        Записи не найдены
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <form action="{% url 'article:pub_article' %}"  method="POST">
+        {% csrf_token %}
+        <input type="text" required placeholder="Имя поста" name="name"><br>
+        <textarea name="content" required placeholder="Контент поста" cols="30" rows="10"></textarea><br>
+        <button type="submit">Опубликовать запись</button>
+    </form>
+{% endblock %}
