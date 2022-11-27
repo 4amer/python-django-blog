@@ -15,8 +15,11 @@ def index(request):
     article = Article.objects.all()
     return render(request, 'article/list.html', {'article': article})
 
+def createPost(request):
+    return render (request, 'article/createPost.html')
+
 def pub_article(request):
-    a = Article(article_text = request.POST['name'], 
+    a = Article(article_username = request.user,
         article_content = request.POST['content'],
         article_date = timezone.now())
     a.save()

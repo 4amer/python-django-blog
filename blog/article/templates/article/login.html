@@ -1,20 +1,24 @@
 {% extends 'article/base.html' %}
 
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'article/css/login.css' %} ">
+{% endblock %}
+
 {% block login %} login {% endblock %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <li>
-            <ol>
+    <div id="main">
+        <div id="form">
+            <form action="" method="POST">
+                {% csrf_token %}
                 <input type="text" name="username" placeholder="username">
-            </ol>
-            <ol>
                 <input type="text" name="password" placeholder="password">
-            </ol>
-            <button type="submit">login</button>
-        </li>
-    </form>
+                <button type="submit">login</button>
+            </form>
+        </div>
+    </div>
     {% for message in messages %}
         <p>{{message}}</p>
     {% endfor %}

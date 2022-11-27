@@ -1,0 +1,21 @@
+{% extends 'article/base.html' %}
+
+{% load static %} 
+
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'article/css/createPost.css' %} ">
+{% endblock %}
+
+{% block title %} Создание поста {% endblock %}
+
+{% block content %}
+<div id="main-block">
+    <div id="post">    
+        <form action="{% url 'article:pub_article' %}"  method="POST">
+            {% csrf_token %}
+            <textarea name="content" required placeholder="Контент поста" cols="100" rows="10"></textarea><br>
+            <button type="submit">Опубликовать запись</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

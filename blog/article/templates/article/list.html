@@ -1,31 +1,45 @@
 {% extends 'article/base.html' %}
 
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'article/css/list.css' %} ">
+{% endblock %}
+
+
 {% block title %}Blog{% endblock %}
 
 {% block content %}
-<li>
-    <ol><a href="{% url 'article:register' %}"> Регистрация </a></ol>
-    <ol><a href="{% url 'article:login' %}"> Войти </a></ol>
-</li>
-<span>Hello, {{request.user}}</span>
-<span><a href="{% url 'article:logout' %}">logout</a></span>
-    {% if article %}
-        {% for a in article %}
-            <h2>{{ a.article_text }}</h2>
-            <p>{{ a.article_content }}</p>
-            <em>{{ a.article_date }}</em>
-            <br>
-        {% endfor %}
-    {% else %}
-        Записи не найдены
-    {% endif %}
-    <br>
-    <br>
-    <br>
-    <form action="{% url 'article:pub_article' %}"  method="POST">
-        {% csrf_token %}
-        <input type="text" required placeholder="Имя поста" name="name"><br>
-        <textarea name="content" required placeholder="Контент поста" cols="30" rows="10"></textarea><br>
-        <button type="submit">Опубликовать запись</button>
-    </form>
+
+<header>
+    <div id="login">
+        <span><a href="{% url 'article:register' %}" class="urls"> Регистрация </a></span>
+        <span id="login-url"><a href="{% url 'article:login' %}" class="urls"> Войти </a></span>
+    </div>
+    <div id="logout">
+        <span>
+                {{request.user}}
+        </span>
+        <span><a href="{% url 'article:logout' %}" class="urls">Выйти из аккаунта</a></span>
+    </div>
+</header>
+<nav>
+    <button id="block"><a href="{% url 'article:createPost' %}">Create post</a></button>
+</nav>
+<div id="main-block">
+{% if article %}
+    {% for a in article %}
+        <div id="post">
+            <div id="title">
+                <p id="aratar" ></p>
+                <span id="username">{{ a.article_username}}</span>
+                <span id="time-pub"><em>{{ a.article_date }}</em></span>
+            </div>
+            <p id="content">{{ a.article_content }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    Записи не найдены
+{% endif %}
+</div>
 {% endblock %}

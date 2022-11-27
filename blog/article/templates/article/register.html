@@ -1,29 +1,29 @@
 {% extends 'article/base.html' %}
 
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'article/css/register.css' %} ">
+{% endblock %}
+
 {% block title %} Регистрация {% endblock %}
 
 {% block content %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        <li>
-            <ol>
-                {{form.username.label}}
-                {{form.username}}
-            </ol>
-            <ol>
-                {{form.email.label}}
-                {{form.email}}
-            </ol>
-            <ol>
-                {{form.password1.label}}
-                {{form.password1}}
-            </ol>
-            <ol>
-                {{form.password2.label}}
-                {{form.password2}}
-            </ol>
-        </li>
-        {{form.errors}}
-        <button type="submit" name="Create User">Регистрация</button>
-    </form>
+<div id="main">
+    <div id="form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.username}}
+            {{form.username.label}}
+            {{form.email}}
+            {{form.email.label}}
+            {{form.password1}}
+            {{form.password1.label}}
+            {{form.password2}}
+            {{form.password2.label}}
+            {{form.errors}}
+            <button type="submit" name="Create User">Register</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
