@@ -1,0 +1,21 @@
+{% extends 'article/base.html' %}
+
+{% block login %} login {% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <li>
+            <ol>
+                <input type="text" name="username" placeholder="username">
+            </ol>
+            <ol>
+                <input type="text" name="password" placeholder="password">
+            </ol>
+            <button type="submit">login</button>
+        </li>
+    </form>
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endblock %}

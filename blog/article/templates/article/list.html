@@ -3,7 +3,12 @@
 {% block title %}Blog{% endblock %}
 
 {% block content %}
-
+<li>
+    <ol><a href="{% url 'article:register' %}"> Регистрация </a></ol>
+    <ol><a href="{% url 'article:login' %}"> Войти </a></ol>
+</li>
+<span>Hello, {{request.user}}</span>
+<span><a href="{% url 'article:logout' %}">logout</a></span>
     {% if article %}
         {% for a in article %}
             <h2>{{ a.article_text }}</h2>
